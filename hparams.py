@@ -19,16 +19,17 @@ def create_hparams(hparams_string=None, verbose=False):
         dist_url="tcp://localhost:54321",
         cudnn_enabled=True,
         cudnn_benchmark=False,
-        ignore_layers=['speaker_embedding.weight'],
+        ignore_layers=['speaker_embedding.weight', 'embedding.weight'],
 
         ################################
         # Data Parameters             #
         ################################
-        training_files='filelists/ljs_audiopaths_text_sid_train_filelist.txt',
-        validation_files='filelists/ljs_audiopaths_text_sid_val_filelist.txt',
-        text_cleaners=['english_cleaners'],
+        training_files='filelists/brspeech_train_filelist.txt',
+        validation_files='filelists/brspeech_test_filelist.txt',
+        text_cleaners=['basic_cleaners'],
         p_arpabet=1.0,
-        cmudict_path="data/cmu_dictionary",
+        #cmudict_path="data/cmu_dictionary",
+        cmudict_path=None,
 
         ################################
         # Audio Parameters             #
@@ -110,7 +111,7 @@ def create_hparams(hparams_string=None, verbose=False):
         learning_rate_anneal=50000,
         weight_decay=1e-6,
         grad_clip_thresh=1.0,
-        batch_size=32,
+        batch_size=12,
         mask_padding=True,  # set model's padded outputs to padded values
 
     )
